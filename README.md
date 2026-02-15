@@ -153,6 +153,25 @@ You can also rely on a `.env` file in the project directory and omit `env` or on
 
 ---
 
+## How to use
+
+Once the server is running and connected (e.g. in Cursor):
+
+1. **Add documents** (optional but needed for RAG answers)  
+   Use the **add_documents** tool: pass `text` (the content to ingest) and optionally `source` (e.g. `"Context Engineering Book"`). The server chunks and embeds the text into ChromaDB. You can add more documents anytime.
+
+2. **Ask a question**  
+   Use the **query_knowledge_base** tool with your question. The server runs the multi-agent pipeline (coordinator → retriever → synthesizer) and returns a **proposed answer** with citations.
+
+3. **Human-in-the-loop**  
+   Review the proposal, then call **approve_or_edit_answer**:
+   - To accept: `approved=True`, same `proposal_answer` as returned.
+   - To request changes: `approved=False`, same `proposal_answer`, and set `user_feedback` to your requested edits. The server can then produce a revised answer.
+
+You can also use **search_knowledge_base** to only search the vector store (no generated answer), and the **knowledge_assistant_workflow** prompt as a step-by-step guide. The resource **knowledge-assistant://server_info** exposes server metadata and RAG settings.
+
+---
+
 ## Features
 
 **Core:**
