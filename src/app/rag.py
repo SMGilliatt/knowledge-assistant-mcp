@@ -13,7 +13,7 @@ from ..models.schemas import RetrievedChunk, SearchResult
 def get_embedding_model():
     """Return embedding model (Google). Requires GOOGLE_API_KEY."""
     return GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001",  # or "gemini-embedding-001" depending on API
+        model=settings.embedding_model,
         google_api_key=settings.google_api_key.get_secret_value() if settings.google_api_key else None,
     )
 

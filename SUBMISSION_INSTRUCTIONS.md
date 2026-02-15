@@ -2,7 +2,7 @@
 
 Do **Part 1** (test). Then **Part 2** (publish to GitHub). Then **Part 3** (submit). Do not skip ahead.
 
-This project requires **Python 3.14**. Run all steps from **this project folder** (the repo root). Use `uv sync` to install dependencies; uv will use the Python version specified in `.python-version`.
+This project requires **Python 3.13**. Run all steps from **this project folder** (the repo root). Use `uv sync` to install dependencies; uv will use the Python version specified in `.python-version`.
 
 ---
 
@@ -51,7 +51,7 @@ Press Enter.
 
 **Check:** You see something like "Resolved" and "Installed" and no red error. If you see "command not found: uv," you need to install uv—tell me your OS and I'll give you the command.
 
-**Check Python version:** Type `uv run python --version` and press Enter. You should see **Python 3.14.x**.
+**Check Python version:** Type `uv run python --version` and press Enter. You should see **Python 3.13.x**.
 
 ---
 
@@ -311,7 +311,7 @@ https://github.com/YOUR_USERNAME/knowledge-assistant-mcp
 
 # Final checklist (before you submit)
 
-- [ ] Part 1: Server ran without error (Step 6) and you stopped it (Step 7). Python 3.14.x (Step 3).
+- [ ] Part 1: Server ran without error (Step 6) and you stopped it (Step 7). Python 3.13.x (Step 3).
 - [ ] Part 2: On GitHub you see `README.md`, `src/`, `pyproject.toml` at the top (Step 18). No `.env` on GitHub.
 - [ ] Part 3: The `.txt` file contains **only** the repo URL (Step 20). You attached it and submitted (Step 21).
 
@@ -323,7 +323,7 @@ If any box is unchecked, fix that step before submitting.
 
 - **"uv: command not found"** – Install uv. Tell me your OS (Mac/Windows) for the exact command.
 - **"git: command not found"** – Install Git from [git-scm.com](https://git-scm.com/).
-- **Wrong Python version** – Make sure you're in this project folder and run `uv sync`; uv uses `.python-version` (3.14).
+- **Wrong Python version** – Make sure you're in this project folder and run `uv sync`; uv uses `.python-version` (3.13).
 - **Server error in Step 6** – Copy the full error and tell me. Don't continue to Part 2 until the server runs.
 - **".env" in git status (Step 12)** – Do not commit. Ensure `.env` is listed in `.gitignore`.
 - **Git password rejected** – Use a GitHub Personal Access Token as the password (Step 17).

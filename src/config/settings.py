@@ -48,6 +48,11 @@ class Settings(BaseSettings):
         alias="RAG_TOP_K",
         description="Number of chunks to retrieve",
     )
+    embedding_model: str = Field(
+        default="models/gemini-embedding-001",
+        alias="EMBEDDING_MODEL",
+        description="Google embedding model for RAG (e.g. models/gemini-embedding-001)",
+    )
 
     # Opik (optional)
     opik_api_key: SecretStr | None = Field(

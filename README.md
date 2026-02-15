@@ -54,7 +54,7 @@ cd knowledge-assistant-mcp
 uv sync
 ```
 
-This creates a virtual environment (Python 3.14) and installs dependencies from `pyproject.toml`.
+This creates a virtual environment (Python 3.13) and installs dependencies from `pyproject.toml`.
 
 ### 4.3. Configure environment variables
 
@@ -75,6 +75,7 @@ Optional:
 - **`CHROMA_PERSIST_DIR`**: Directory for ChromaDB (default: `./chroma_data`).
 - **`CHROMA_COLLECTION`**: Collection name (default: `knowledge_base`).
 - **`RAG_TOP_K`**: Number of chunks to retrieve (default: `5`).
+- **`EMBEDDING_MODEL`**: Google embedding model for RAG (default: `models/gemini-embedding-001`). Override if your API uses a different model.
 
 ### 4.4. Run the server
 
@@ -113,6 +114,7 @@ All variables that may be added to `.env`, and where to get API keys:
 | `CHROMA_PERSIST_DIR`| No       | ChromaDB persistence directory (default: `./chroma_data`) |
 | `CHROMA_COLLECTION` | No       | ChromaDB collection name (default: `knowledge_base`) |
 | `RAG_TOP_K`         | No       | Number of chunks to retrieve (default: `5`) |
+| `EMBEDDING_MODEL`   | No       | Google embedding model for RAG (default: `models/gemini-embedding-001`) |
 
 ---
 
@@ -154,7 +156,7 @@ Brief description of each mandatory feature:
 - **MCP server in Python with FastMCP**: Implemented in `src/server.py`; creates a `FastMCP` instance and registers routers.
 - **At least one MCP tool with meaningful functionality**: Multiple tools: `query_knowledge_base`, `approve_or_edit_answer`, `add_documents`, `search_knowledge_base`.
 - **At least one MCP prompt that ties tools into an agentic workflow with a user feedback/confirmation step**: The `knowledge_assistant_workflow` prompt describes the flow: (1) use `query_knowledge_base` to get a proposed answer, (2) review the proposal, (3) use `approve_or_edit_answer` to approve or request edits. This implements the required human-in-the-loop step.
-- **Project initialized with `uv`**: `pyproject.toml`, `.python-version`; dependencies installed with `uv sync`.
+- **Project initialized with `uv`**: `pyproject.toml`, `.python-version` (Python 3.13); dependencies installed with `uv sync`.
 - **Clear structure**: `src/`, `src/server.py`, `src/routers/` (tools, resources, prompts), `src/tools/`, `src/resources/`, `src/prompts/`, `src/app/`, `src/utils/`, `src/config/settings.py` (pydantic-settings).
 - **README**: This file: description, setup, env vars, Cursor JSON, required/custom features.
 - **No API keys in repo**: Keys in `.env`; `.env.sample` with fake values; `.env` in `.gitignore`.
@@ -168,7 +170,7 @@ Brief description of each custom feature (at least 4 required; we implemented 6)
 
 1. **Multi-agent orchestration**: Coordinator agent (decides answer_from_kb vs general_answer), retriever agent (RAG over ChromaDB), synthesizer agent (produces structured answer proposal). Implemented in `src/app/orchestrator.py` and used by `query_knowledge_base`.
 2. **RAG with vector database**: ChromaDB with LangChain and Google embeddings; `search_knowledge_base` and ingestion via `add_documents`. Persistence via `CHROMA_PERSIST_DIR`.
-3. **MCP resources**: `server_info` resource exposes server name, version, knowledge base collection name, and RAG settings for client context.
+3. **MCP resources**: `knowledge-assistant://server_info` resource exposes server name, version, knowledge base collection name, and RAG settings for client context.
 4. **Human-in-the-loop validation**: “AI generation → validation” pattern: the workflow returns a **proposal**; the user must call `approve_or_edit_answer` to approve or request edits before finalizing.
 5. **Structured outputs**: Pydantic models (`AnswerProposal`, `SearchResult`, `RetrievedChunk`, `SynthesisResult`) used for synthesizer output and API responses.
 6. **Observability (Opik)**: Optional Opik integration for tracing; configured when `OPIK_API_KEY` is set; used at server startup and available for tool/LLM tracing.
