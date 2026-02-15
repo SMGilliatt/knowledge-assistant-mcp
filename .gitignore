@@ -44,5 +44,6 @@ htmlcov/
 # uv
 .uv/
 
-# Course submission (local use only)
+# Course / capstone (local use only)
 SUBMISSION_INSTRUCTIONS.md
+CAPSTONE_STATUS.md
