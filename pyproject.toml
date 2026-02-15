@@ -1,0 +1,46 @@
+[project]
+name = "knowledge-assistant-mcp"
+version = "0.1.0"
+description = "Multi-agent RAG knowledge assistant MCP server with human-in-the-loop"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastmcp>=2.0.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "chromadb>=0.4.0",
+    "langchain>=0.3.0",
+    "langchain-chroma>=0.1.0",
+    "langchain-google-genai>=2.0.0",
+    "langchain-community>=0.3.0",
+    "google-genai>=1.20.0",
+    "opik>=1.7.0",
+]
+
+[project.scripts]
+knowledge-assistant-mcp = "src.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+
+[tool.ruff.format]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["F", "E", "I"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.8.0",
+]
+
+# Python 3.13 (ChromaDB does not support 3.14 yet). Use .python-version; uv reads it.
