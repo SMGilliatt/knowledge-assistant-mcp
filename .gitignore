@@ -43,3 +43,6 @@ htmlcov/
 
 # uv
 .uv/
+
+# Course submission (local use only)
+SUBMISSION_INSTRUCTIONS.md
