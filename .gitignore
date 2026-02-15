@@ -43,8 +43,3 @@ htmlcov/
 
 # uv
 .uv/
-
-# Course / capstone (local use only)
-SUBMISSION_INSTRUCTIONS.md
-CAPSTONE_STATUS.md
-COURSE_REQUIREMENTS.md
