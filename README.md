@@ -41,6 +41,8 @@ knowledge-assistant-mcp/
 
 ## Setup
 
+**Prerequisites:** Python 3.13, [uv](https://docs.astral.sh/uv/).
+
 ### Clone the repository
 
 ```bash
@@ -96,6 +98,8 @@ Or use the entry point:
 ```bash
 uv run knowledge-assistant-mcp --transport stdio
 ```
+
+You should see the FastMCP banner and the process waiting for connections; stop with **Ctrl+C**.
 
 ---
 
